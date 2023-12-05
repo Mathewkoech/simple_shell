@@ -20,7 +20,7 @@ char *get_environ(char *var)
 		{
 			value = strtok(NULL, "\n");
 
-			env = _strdup(value);
+			env = strdup(value);
 
 			free(temp);
 			return (env);
