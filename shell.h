@@ -19,4 +19,5 @@ char *read_line(void);
 char **tokenizer(char *str);
 char *get_environ(char *var);
 char *get_path(char *command);
+char *check_path(char *command)
 #endif
