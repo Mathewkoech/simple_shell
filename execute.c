@@ -2,31 +2,44 @@
 
 /**
  * hsh_exec - function to execute
- * @args: param
+ * @args: param1. arguments pointer array list
+ * @env_: param2. environment
  * Return: void
  */
 
-void hsh_exec(char **args) 
+void hsh_exec(char **args, char **env_)
 {
-	pid_t child_pid = fork();
+	pid_t child_pid;
 
-	if (child_pid == 0) 
+	child_pid = fork();
+	if (child_pid == 0)
+	/*child process */
 	{
-		execvp(args[0], args);
-		perror("hsh");
-		exit(1);
-	} 
-	else if (child_pid > 0) 
+		/* execute the command in the child process */
+		if (execvp(args[0], args, env_) == -1)
+		{
+			/**
+			 * if execvp fails, print an error message,
+			 * and exit the child process
+			 * with a failure status
+			 */
+			perror("hsh. error");
+			exit(1);
+		}
+	}
+	else if (child_pid > 0)
+	/* parent process */
 	{
 		int status;
 
 		do {
-			waitpid(child_pid, &status, WUNTRACED);					        
+			waitpid(child_pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-					    
-	} 
-	else 
+
+	}
+	else
 	{
-		perror("hsh");	    
-	}	
+		/*error forking*/
+		perror("hsh.. error :( ");
+	}
 }
