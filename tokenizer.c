@@ -3,7 +3,8 @@
  * tokenizer - Tokenizes a string into an array of strings.
  * @str: The string to tokenize.
  * Return: An array of strings (tokens), or NULL on failure.
- */
+*/
+
 char **tokenizer(char *str)
 {
 	char *token = NULL, *temp = NULL;
@@ -11,9 +12,12 @@ char **tokenizer(char *str)
 	int count = 0, i = 0, j = 0;
 
 	if (!str)
-	{
 		return (NULL);
+<<<<<<< HEAD
 	}
+=======
+
+>>>>>>> e6dd2b0d48430505a4bdb85d5abc4b58fc4f1950
 	temp = strdup(str);
 	token = strtok(temp, DELIM);
 	while (token)
@@ -25,6 +29,10 @@ char **tokenizer(char *str)
 	command = malloc(sizeof(char *) * (count + 1));
 	if (!command)
 		return (NULL);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e6dd2b0d48430505a4bdb85d5abc4b58fc4f1950
 	token = strtok(str, DELIM);
 	if (!token)
 	{
@@ -35,7 +43,11 @@ char **tokenizer(char *str)
 	{
 		command[i] = strdup(token);
 		if (!command[i])
+<<<<<<< HEAD
 		{
+=======
+		{																			{
+>>>>>>> e6dd2b0d48430505a4bdb85d5abc4b58fc4f1950
 			for (j = 0; j < i; ++j)
 				free(command[j]);
 			free(command);

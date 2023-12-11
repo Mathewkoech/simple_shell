@@ -4,7 +4,7 @@
 #include <unstd.h>
 #include <stdef.h>
 #include <stdlib>
-#include <string.h
+#include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -15,9 +15,10 @@
 #define DELIM " \t\n"
 extern char **environ;
 
+int _strlen(char *s);
 char *read_line(void);
 char **tokenizer(char *str);
 char *get_environ(char *var);
 char *get_path(char *command);
-char *check_path(char *command)
+char *check_path(char *command);
 #endif
