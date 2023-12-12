@@ -2,13 +2,11 @@
 
 /**
  * main - entry
- * @argc: param 1. argument count
- * @argv: param 2. argument list/vector
  * @envp: param 3. environment
  * Return: int 0 on success
  */
 
-int main(int argc, char **argv, char **envp)
+int main(char **envp)
 {
 	char *line;
 	char **args;

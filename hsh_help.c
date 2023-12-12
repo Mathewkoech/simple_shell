@@ -6,7 +6,7 @@
  * Return: void
  */
 
-void hsh_help(char **args)
+void hsh_help(void)
 {
 	char *text_ =
 		"hsh - the custom Shell. The following commands are built in:\n"

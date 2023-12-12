@@ -28,7 +28,7 @@ void _prompt(void);
 char *rmspace(char *cmd);
 char *_strcat(char *dest, char *src);
 char *_strncat(char *dest, const char *src, size_t n);
-void hsh_help(char **args);
+void hsh_help(void);
 char *read_line(void);
 void print_environ(char **command, int *status);
 void freecommand(char **command);
