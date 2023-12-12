@@ -22,7 +22,7 @@ int _strcmp(char *s1, char *s2);
 int _strncmp(char *str1, char *str2, int n);
 char *_strcpy(char *dest, char *src);
 void hsh_exit(char *s);
-void hsh_myprintf(const char *s);
+void hsh_myprintf(char *s);
 void _prompt(void);
 char *rmspace(char *cmd);
 char *_strcat(char *dest, char *src);

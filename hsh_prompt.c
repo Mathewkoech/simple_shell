@@ -7,5 +7,5 @@
 
 void _prompt(void)
 {
-	_myprintf("_$ ");
+	hsh_myprintf("_$ ");
 }
