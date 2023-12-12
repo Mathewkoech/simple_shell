@@ -15,7 +15,7 @@ int main(int argc, char **argv, char **envp)
 
 	do {
 		_prompt();
-		line = readline();
+		line = read_line();
 		args = tokenizer(line);
 
 		if (args[0] != NULL)

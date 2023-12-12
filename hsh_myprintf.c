@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myprintf - function to print.
+ * hsh_myprintf - function to print.
  * @s: param. pointer to string
  * Return: void
  */
 
-void _myprintf(const char *s)
+void hsh_myprintf(char *s)
 {
 	write(STDOUT_FILENO, s, _strlen(s));
 }

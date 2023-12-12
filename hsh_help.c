@@ -13,5 +13,5 @@ void hsh_help(char **args)
 		"  cd       Change the working directory.\n"
 		"  exit     Exit the shell.\n"
 		"  help     Print this help text.\n";
-	_myprintf(text_);
+	hsh_myprintf(text_);
 }
