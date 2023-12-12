@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _exit - terminates the prog with "exit" input.
+ * hsh_exit - terminates the prog with "exit" input.
  * @s: param. the string to be read.
  * Return: nothing.
  */
 
-void _exit(char *s)
+void hsh_exit(char *s)
 {
 	if (_strcmp("exit", s) == 0)
 	{
