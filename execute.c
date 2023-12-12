@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void hsh_exec(char **args, char **env_)
+int hsh_exec(char **args, char **env_)
 {
 	pid_t child_pid;
 
@@ -42,4 +42,5 @@ void hsh_exec(char **args, char **env_)
 		/*error forking*/
 		perror("hsh.. error :( ");
 	}
+	return (1);
 }
