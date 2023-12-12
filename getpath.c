@@ -17,7 +17,7 @@ char *check_path(char *command)/*checks if it is absolute path*/
 			return (strdup(command));
 		}
 	}
-	return (NULL):
+	return (NULL);
 }
 
 /**
