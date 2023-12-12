@@ -36,3 +36,24 @@ void freecommand(char **command)
 	}
 	free(command);
 }
+
+/**
+ *error_print- prints error
+ *@name:program name
+ *@i:index
+ *@command:command
+ */
+void error_print(char *name, int i, char *command)
+{
+	char message[] = ": not found\n";
+	char *index;
+
+	write(STDERR_FILENO, name, _strlen(name));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, index, _strlen(index));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, command, _strlen(command));
+	write(STDERR_FILENO, mssg, _strlen(message));
+
+	free(index);
+}

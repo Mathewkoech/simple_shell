@@ -12,15 +12,15 @@ char *get_environ(char *var)
 
 	for (i = 0; environ[i]; i++)
 	{
-		temp = strdup(environ[i]);
+		temp = _strdup(environ[i]);
 
 		key = strtok(temp, "=");
 
-		if (strcmp(key, var) == 0)
+		if (_strcmp(key, var) == 0)
 		{
 			value = strtok(NULL, "\n");
 
-			env = strdup(value);
+			env = _strdup(value);
 
 			free(temp);
 			return (env);

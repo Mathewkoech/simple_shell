@@ -14,7 +14,7 @@ char *check_path(char *command)/*checks if it is absolute path*/
 	{
 		if (stat(command, &file_info) == 0)
 		{
-			return (strdup(command));
+			return (_strdup(command));
 		}
 	}
 	return (NULL);
@@ -33,7 +33,7 @@ char *get_path(char *command)
 
 	if (check_path(command))
 	{
-		return (strdup(command));
+		return (_strdup(command));
 	}
 
 	path_env = get_environ("PATH");
@@ -44,15 +44,15 @@ char *get_path(char *command)
 
 	for (dir = strtok(path_env, ":"); dir; dir = strtok(NULL, ":"))
 	{
-		full_path = malloc(strlen(dir) + strlen(command) + 2);
+		full_path = malloc(_strlen(dir) + _strlen(command) + 2);
 		if (!full_path)
 		{
 			free(path_env);
 			return (NULL);
 		}
-		strcpy(full_path, dir);
-		strcat(full_path, "/");
-		strcat(full_path, command);
+		_strcpy(full_path, dir);
+		_strcat(full_path, "/");
+		_strcat(full_path, command);
 
 		if (access(full_path, F_OK | X_OK) == 0)
 		{

@@ -13,7 +13,7 @@ char **tokenizer(char *str)
 
 	if (!str)
 		return (NULL);
-	temp = strdup(str);
+	temp = _strdup(str);
 	token = strtok(temp, DELIM);
 	while (token)
 	{
@@ -32,7 +32,7 @@ char **tokenizer(char *str)
 	}
 	while (token)
 	{
-		command[i] = strdup(token);
+		command[i] = _strdup(token);
 		if (!command[i])
 		{
 			for (j = 0; j < i; ++j)

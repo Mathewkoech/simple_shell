@@ -1,5 +1,5 @@
 #ifndef SHELL_H
-#define SHELL_H
+0;276;0c#define SHELL_H
 
 #include <unistd.h>
 #include <stddef.h>
@@ -25,6 +25,7 @@ char *_strncpy(char *dest, char *src, int n);
 void hsh_exit(char *s);
 void hsh_myprintf(char *s);
 void _prompt(void);
+char *_strdup(const char *str);
 char *rmspace(char *cmd);
 char *_strcat(char *dest, char *src);
 char *_strncat(char *dest, const char *src, size_t n);
@@ -36,4 +37,5 @@ char **tokenizer(char *str);
 char *get_environ(char *var);
 char *get_path(char *command);
 char *check_path(char *command);
+void error_print(char *name, int i, char *command);
 #endif
