@@ -16,7 +16,7 @@ int hsh_exec(char **args, char **env_)
 	/*child process */
 	{
 		/* execute the command in the child process */
-		if (execvp(args[0], args, env_) == -1)
+		if (execve(args[0], args, env_) == -1)
 		{
 			/**
 			 * if execvp fails, print an error message,

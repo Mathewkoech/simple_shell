@@ -8,7 +8,7 @@
  * Return: int 0 on success
  */
 
-int main(int argc, char **argv, char **env_)
+int main(int argc, char **argv, char **envp)
 {
 	char *line;
 	char **args;
@@ -17,7 +17,12 @@ int main(int argc, char **argv, char **env_)
 		_prompt();
 		line = readline();
 		args = tokenizer(line);
-		status_ = hsh_exec(argv, env_);
+
+		if (args[0] != NULL)
+			status_ = hsh_exec(args, envp);
+
+		free(line);
+		free(args);
 	} while (status_);
 
 	return (0);

@@ -1,9 +1,9 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#include <unstd.h>
-#include <stdef.h>
-#include <stdlib>
+#include <unistd.h>
+#include <stddef.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
