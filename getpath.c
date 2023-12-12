@@ -16,9 +16,8 @@ char *check_path(char *command)/*checks if it is absolute path*/
 		{
 			return (strdup(command));
 		}
-		return (NULL);
 	}
-	return (NULL);
+	return (NULL):
 }
 
 /**
@@ -31,7 +30,11 @@ char *check_path(char *command)/*checks if it is absolute path*/
 char *get_path(char *command)
 {
 	char *path_env, *full_path, *dir;
-	struct stat file_info;
+
+	if (check_path(command))
+	{
+		return (strdup(command));
+	}
 
 	path_env = get_environ("PATH");
 	if (!path_env)
@@ -51,7 +54,7 @@ char *get_path(char *command)
 		strcat(full_path, "/");
 		strcat(full_path, command);
 
-		if (stat(full_path, &file_info) == 0)
+		if (access(full_path, F_OK | X_OK) == 0)
 		{
 			free(path_env);
 			return (full_path);
