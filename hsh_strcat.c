@@ -3,7 +3,7 @@
 /**
  * _strcat - func appends the src string to the dest string
  * @dest: param 1.
- * @src: param 2. 
+ * @src: param 2.
  * Return: char. String
  */
 
@@ -21,9 +21,9 @@ char *_strcat(char *dest, char *src)
 		;
 	}
 
-	for (j = 0; j < len; j++)
+	for (j = 0; j < len_s; j++)
 		dest[len_d + j] = src[j];
-	
+
 
 	dest[len_d + len_s] = '\0';
 	return (dest);

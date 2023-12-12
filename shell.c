@@ -12,6 +12,7 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line;
 	char **args;
+	int status_;
 
 	do {
 		_prompt();
