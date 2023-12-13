@@ -2,7 +2,6 @@
 
 /**
  * hsh_help - function to privide help
- * @args: param. pointer list of arguments
  * Return: void
  */
 
