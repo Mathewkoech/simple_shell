@@ -12,15 +12,15 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#define DELIM " \t\n"
+#define DELIM " \t\n;"
 extern char **environ;
 
-int _strlen(char *s);
+int _strlen(const char *s);
 /*int hsh_exec(char **args, char **env_);*/
 int _cd(char **args);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *str1, char *str2, int n);
-char *_strcpy(char *dest, char *src);
+char *_strcpy(char *dest, const char *src);
 char *_strncpy(char *dest, char *src, int n);
 void hsh_exit(char *s);
 void hsh_myprintf(char *s);
@@ -43,5 +43,7 @@ void string_reverse(char *str, int lenght);
 int execute_command(char **command, char **argv, int i);
 void handle_builtins(char **command,char **argv, int *status, int i);
 int builtin(char *command);
-
+char *str_rep(const char *str, const char *old, const char *new);
+char *var_replace(char *str, int status, pid_t pid);
+char *_strstr(const char *str, const char *sub_str);
 #endif

@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * main - entry
  * @envp: param 3. environment
@@ -8,12 +7,12 @@
  */
 int main(int arc, char **envp)
 {
-	char *line;
-	char **args;
-	int i = 0;
-	int status_;
+	pid_t pid;
+	char *line, **commands, **args;
+	int status_, i = 0, cmd_index = 0;
 	(void)arc;
 
+	pid = getpid();
 	while (1)
 	{
 		line = read_line();
@@ -24,15 +23,26 @@ int main(int arc, char **envp)
 			free(line);
 			return (status_);
 		}
-		args = tokenizer(line);
-		if (!args)
+		line = var_replace(line,status_, pid);
+		commands = tokenizer(line);
+		if (!commands)
 			continue;
-		if (builtin(args[0]))
+		for (cmd_index = 0; commands[cmd_index] != NULL; cmd_index++)
 		{
-			handle_builtins(args, envp, &status_, i);
+			args = tokenizer(commands[cmd_index]);
+			if (!args)
+			continue;
+			if (builtin(args[0]))
+			{
+				handle_builtins(args, envp, &status_, i);
+			}
+			else
+			{
+				status_ = execute_command(args, envp, i);
+					}
+			freecommand(args);
 		}
-		else
-			status_ = execute_command(args, envp, i);
+		freecommand(commands);
 	}
 	return (0);
 }
