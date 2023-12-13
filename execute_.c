@@ -7,11 +7,9 @@
  */
 int execute_command(char **command, char **argv, int i)
 {
-	pid_t child_pid;
-	char *full_path;
+	pid_t child_pid, int status, char *full_path;
 
 	full_path = get_path(command[0]);
-
 	if (full_path)
 	{
 		child_pid = fork();
@@ -35,8 +33,6 @@ int execute_command(char **command, char **argv, int i)
 				}
 			else
 			{
-				int status;
-
 				waitpid(child_pid, &status, 0);
 				if (WIFEXITED(status))
 				{
