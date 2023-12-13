@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * execute_command - Executes the given command using execve.
  * @command: The command to execute.
@@ -5,6 +7,7 @@
  *@index:index of command
  * Return: void
  */
+
 void execute_command(char **command, int index, Char **argv)
 {
 	pid_t child_pid;
