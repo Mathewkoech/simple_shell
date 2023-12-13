@@ -1,16 +1,16 @@
+#include "shell.h"
 /**
  * execute_command - Executes the given command using execve.
  * @command: The command to execute.
  *@argv:vector arguments
- *@index:index of command
- * Return: void
+ *@i:index of command
  */
-void execute_command(char **command, int index, Char **argv)
+int execute_command(char **command, char **argv, int i)
 {
 	pid_t child_pid;
 	char *full_path;
 
-	full_path = get_path(command);
+	full_path = get_path(command[0]);
 
 	if (full_path)
 	{
@@ -20,12 +20,12 @@ void execute_command(char **command, int index, Char **argv)
 			perror("fork");
 			free(full_path);
 			freecommand(command);
-			return;
+			return(127);
 		}
 
 		if (child_pid == 0)
 		{
-			if (execve(full_path, (command, environ) == -1)
+			if (execve(full_path, command, environ) == -1)
 			{
 				perror("execve");
 				freecommand(command);
@@ -52,7 +52,7 @@ void execute_command(char **command, int index, Char **argv)
 		}
 		else
 		{
-			error_print(argv[0], command, index);
+			error_print(argv[0], command[0], i);
 		}
-	}
+	return (-1);
 }

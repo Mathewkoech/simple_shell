@@ -3,22 +3,32 @@
 /**
  * main - entry
  * @envp: param 3. environment
+ *@arc:count of arguments
  * Return: int 0 on success
  */
 
-int main(char **envp)
+int main(int arc, char **envp)
 {
 	char *line;
 	char **args;
+	int i = 0;
 	int status_;
+	(void)arc;
 
-	do {
-		_prompt();
+	while (1)
+	{
 		line = read_line();
+		if (line == NULL)
+		{
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
+			free(line);
+			return (status_);
+		}
 		args = tokenizer(line);
 
 		if (args[0] != NULL)
-			status_ = hsh_exec(args, envp);
+			status_ = execute_command(args, envp, i);
 
 		free(line);
 		free(args);

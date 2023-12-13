@@ -6,7 +6,7 @@
  * Return: int on success
  */
 
-int hsh_cd(char **args)
+int _cd(char **args)
 {
 	if (args[1] == NULL)
 	{

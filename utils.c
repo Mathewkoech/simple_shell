@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  *print_environ-prints enviroment variables
  *@command:command arguments for env
@@ -43,17 +42,48 @@ void freecommand(char **command)
  *@i:index
  *@command:command
  */
-void error_print(char *name, int i, char *command)
+void error_print(char *name, char *command, int i)
 {
 	char message[] = ": not found\n";
 	char *index;
+
+	index = _itoa(i);
 
 	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, index, _strlen(index));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, command, _strlen(command));
-	write(STDERR_FILENO, mssg, _strlen(message));
+	write(STDERR_FILENO, message, _strlen(message));
 
 	free(index);
+}
+
+/**
+ * _itoa - Converts an integer to a string.
+ * @i: The integer
+ *
+ * Return: The string
+ */
+char *_itoa(int i)
+{
+	char buffer[20];
+	int j = 0;
+
+	if (i == 0)
+		buffer[j++] = '0';
+	else
+	{
+
+		while (i > 0)
+		{
+			buffer[j++] = (i % 10) + '0';
+			i /= 10;
+		}
+	}
+
+	buffer[j] = '\0';
+	string_reverse(buffer, j);
+
+	return (_strdup(buffer));
 }

@@ -1,5 +1,5 @@
 #ifndef SHELL_H
-0;276;0c#define SHELL_H
+#define SHELL_H
 
 #include <unistd.h>
 #include <stddef.h>
@@ -16,8 +16,8 @@
 extern char **environ;
 
 int _strlen(char *s);
-int hsh_exec(char **args, char **env_);
-int hsh_cd(char **args);
+/*int hsh_exec(char **args, char **env_);*/
+int _cd(char **args);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *str1, char *str2, int n);
 char *_strcpy(char *dest, char *src);
@@ -37,5 +37,11 @@ char **tokenizer(char *str);
 char *get_environ(char *var);
 char *get_path(char *command);
 char *check_path(char *command);
-void error_print(char *name, int i, char *command);
+void error_print(char *name, char *command, int i);
+char *_itoa(int i);
+void string_reverse(char *str, int lenght);
+int execute_command(char **command, char **argv, int i);
+void handle_builtins(char **command,char **argv, int *status, int i);
+int builtin(char *command);
+
 #endif
