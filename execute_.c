@@ -4,10 +4,13 @@
  * @command: The command to execute.
  *@argv:vector arguments
  *@i:index of command
+ *Return:exit status of command
  */
 int execute_command(char **command, char **argv, int i)
 {
-	pid_t child_pid, int status, char *full_path;
+	pid_t child_pid;
+	int status;
+	char *full_path;
 
 	full_path = get_path(command[0]);
 	if (full_path)
@@ -18,7 +21,7 @@ int execute_command(char **command, char **argv, int i)
 			perror("fork");
 			free(full_path);
 			freecommand(command);
-			return(127);
+			return (127);
 		}
 
 		if (child_pid == 0)

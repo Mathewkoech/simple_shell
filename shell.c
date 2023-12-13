@@ -6,7 +6,6 @@
  *@arc:count of arguments
  * Return: int 0 on success
  */
-
 int main(int arc, char **envp)
 {
 	char *line;
@@ -26,13 +25,14 @@ int main(int arc, char **envp)
 			return (status_);
 		}
 		args = tokenizer(line);
-
-		if (args[0] != NULL)
+		if (!args)
+			continue;
+		if (builtin(args[0]))
+		{
+			handle_builtins(args, envp, &status_, i);
+		}
+		else
 			status_ = execute_command(args, envp, i);
-
-		free(line);
-		free(args);
-	} while (status_);
-
+	}
 	return (0);
 }
