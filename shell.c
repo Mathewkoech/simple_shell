@@ -23,7 +23,7 @@ int main(int arc, char **envp)
 			free(line);
 			return (status_);
 		}
-		line = var_replace(line,status_, pid);
+		line = var_replace(line, status_, pid);
 		commands = tokenizer(line);
 		if (!commands)
 			continue;
