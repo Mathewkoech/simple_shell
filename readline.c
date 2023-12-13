@@ -22,5 +22,14 @@ char *read_line(void)
 		free(line);
 		return (NULL);
 	}
+	if (line[read - 1] == '\n')
+	{
+		line[read - 1] = '\0';
+	}
+	if (line[0] == '#' && (line[1] == '\0' || line[1] == ' '))
+	{
+		free(line);
+		return(read_line());
+	}
 	return (line);
 }

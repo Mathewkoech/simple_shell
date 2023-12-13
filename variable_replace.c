@@ -61,6 +61,7 @@ char *str_rep(const char *str, const char *old, const char *new)
 	if (result == NULL)
 	{
 		return (NULL);
+		return  (result);
 	}
 	i = 0;
 	while (*str)
@@ -77,5 +78,6 @@ char *str_rep(const char *str, const char *old, const char *new)
 		}
 	}
 	result[i] = '\0';
+	/*free(result);*/
 	return (result);
 }

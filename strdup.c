@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * _strdup - Duplicates a string.
+0;276;0c * _strdup - Duplicates a string.
  * @str: The string to duplicate.
  *
  * Return: A pointer to the duplicated string, or NULL on failure.
