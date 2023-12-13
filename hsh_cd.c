@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * hsh_cd - func to do cd's
+ * _cd - func to do cd's
  * @args: param
  * Return: int on success
  */
