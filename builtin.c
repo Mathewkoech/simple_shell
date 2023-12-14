@@ -60,6 +60,7 @@ void handle_builtins(char **cmd, char **argv, int *status, int i)
 			write(STDOUT_FILENO, "\n", 1);
 			free(path_value);
 		}
+	}
 }
 
 /**
