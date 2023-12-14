@@ -13,7 +13,7 @@ char *read_line(void)
 
 	if (isatty(STDIN_FILENO) == 1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "_$ ", 3);
 	}
 
 	read = getline(&line, &len, stdin);

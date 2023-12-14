@@ -67,11 +67,13 @@ char *path_value = get_environ("PATH");
  * Return: nothing.
  */
 
-void hsh_exit(char *s)
+int hsh_exit(char *s)
 {
 	if (_strcmp("exit", s) == 0)
 	{
 		free(s);
 		exit(EXIT_SUCCESS);
 	}
+
+	return (-1);
 }
