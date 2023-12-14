@@ -68,14 +68,14 @@ void error_print(char *name, char *command, int i)
 char *_itoa(int i)
 {
 	char buffer[20];
-	int j = 0;
+	size_t j = 0;
 
 	if (i == 0)
 		buffer[j++] = '0';
 	else
 	{
 
-		while (i > 0)
+		while (i > 0 && j < (size_t)(sizeof(buffer) - 1))
 		{
 			buffer[j++] = (i % 10) + '0';
 			i /= 10;

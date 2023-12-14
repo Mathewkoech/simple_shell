@@ -9,7 +9,7 @@ int main(int arc, char **envp)
 {
 	pid_t pid;
 	char *line, **commands, **args;
-	int status_, i = 0, cmd_index = 0;
+	int status_ = 0, i = 0, cmd_index = 0;
 	(void)arc;
 
 	pid = getpid();

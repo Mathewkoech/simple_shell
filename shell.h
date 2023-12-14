@@ -41,7 +41,7 @@ void error_print(char *name, char *command, int i);
 char *_itoa(int i);
 void string_reverse(char *str, int lenght);
 int execute_command(char **command, char **argv, int i);
-void handle_builtins(char **command,char **argv, int *status, int i);
+void handle_builtins(char **command, char **argv, int *status, int i);
 int builtin(char *command);
 char *str_rep(const char *str, const char *old, const char *new);
 char *var_replace(char *str, int status, pid_t pid);
