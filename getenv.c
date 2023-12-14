@@ -1,5 +1,6 @@
 #include "shell.h"
-/** get_environ - gets the value of an environment variable.
+/**
+ *get_environ - gets the value of an environment variable.
  * @var:environment variable.
  * Return: The value of the environment variable or NULL if not found.
  */
