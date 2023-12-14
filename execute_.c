@@ -10,9 +10,8 @@ int execute_command(char **command, char **argv, int i)
 {
 	pid_t child_pid;
 	int status;
-	char *full_path;
+	char *full_path = get_path(command[0]);
 
-	full_path = get_path(command[0]);
 	if (full_path)
 	{
 		child_pid = fork();
@@ -33,7 +32,7 @@ int execute_command(char **command, char **argv, int i)
 				free(full_path);
 				exit(EXIT_FAILURE);
 			}
-				}
+			}
 			else
 			{
 				waitpid(child_pid, &status, 0);
@@ -42,16 +41,11 @@ int execute_command(char **command, char **argv, int i)
 					return (WEXITSTATUS(status));
 				}
 				else
-				{
-					perror("Did not terminate normally");
-					return (-1);
-				}
+					return (perror("Did not terminate normally"), -1);
 			}
 			free(full_path);
 		}
 		else
-		{
 			error_print(argv[0], command[0], i);
-		}
 	return (-1);
 }
