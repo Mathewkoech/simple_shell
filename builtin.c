@@ -60,11 +60,13 @@ void handle_builtins(char **cmd, char **argv, int *status, int i)
  * Return: nothing.
  */
 
-void hsh_exit(char *s)
+int hsh_exit(char *s)
 {
 	if (_strcmp("exit", s) == 0)
 	{
 		free(s);
 		exit(EXIT_SUCCESS);
 	}
+
+	return (-1);
 }
