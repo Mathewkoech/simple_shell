@@ -46,8 +46,12 @@ char *var_replace(char *str, int status, pid_t pid)
  */
 char *str_rep(const char *str, const char *old, const char *new)
 {
+
 	char *result;
 	int new_len = _strlen(new), count = 0, i = 0, old_len = _strlen(old);
+
+	if (str == NULL || old == NULL || new == NULL)
+		return (NULL);
 
 	for (i = 0; str[i] != '\0'; ++i)
 	{
@@ -77,6 +81,6 @@ char *str_rep(const char *str, const char *old, const char *new)
 		}
 	}
 	result[i] = '\0';
-/*	free(result);*/
+	/*free(result);*/
 	return (result);
 }
