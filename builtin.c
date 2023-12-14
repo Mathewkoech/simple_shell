@@ -11,7 +11,7 @@ int builtin(char *command)
 
 	char *builtins[] = {
 			"setenv", "env", "exit",
-			"cd", NULL};
+			"cd", "echo", NULL};
 	for (i = 0; builtins[i]; i++)
 	{
 		if (_strcmp(command, builtins[i]) == 0)
@@ -45,6 +45,10 @@ void handle_builtins(char **cmd, char **argv, int *status, int i)
 	else if (_strcmp(cmd[0], "cd") == 0)
 	{
 		_cd(cmd);
+	}
+	else if (_strcmp(cmd[0], "echo") == 0)
+	{
+		_echo(cmd);
 	}
 }
 

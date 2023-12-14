@@ -87,3 +87,23 @@ char *_itoa(int i)
 
 	return (_strdup(buffer));
 }
+
+/**
+ * _echo - Custom echo 
+ * @cmd: Array of command arguments.
+ */
+void _echo(char **cmd)
+{
+	int i = 1;
+
+	while (cmd[i] != NULL)
+	{
+		write(STDOUT_FILENO, cmd[i], _strlen(cmd[i]));
+		if (cmd[i + 1] != NULL)
+		{
+			write(STDOUT_FILENO, " ", 1);
+		}
+		i++;
+	}
+	write(STDOUT_FILENO, "\n", 1);
+}

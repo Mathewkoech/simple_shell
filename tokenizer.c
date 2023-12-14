@@ -43,7 +43,7 @@ char **tokenizer(char *str)
 		token = strtok(NULL, DELIM);
 		i++;
 	}
-	free(temp);
+	/*free(temp);*/
 	command[i] = NULL;
 	return (command);
 }

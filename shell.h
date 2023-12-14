@@ -46,4 +46,5 @@ int builtin(char *command);
 char *str_rep(const char *str, const char *old, const char *new);
 char *var_replace(char *str, int status, pid_t pid);
 char *_strstr(const char *str, const char *sub_str);
+void _echo(char **cmd);
 #endif

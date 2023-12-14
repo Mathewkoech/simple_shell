@@ -6,7 +6,6 @@
  *Return:NULL if insufficient memory available
  */
 
-
 char *_strdup(const char *str)
 {
 	char *duplicate;
