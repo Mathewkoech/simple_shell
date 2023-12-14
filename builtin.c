@@ -11,7 +11,7 @@ int builtin(char *command)
 
 	char *builtins[] = {
 			"setenv", "env", "exit",
-			"cd", "echo", NULL};
+			"cd", "echo", "$PATH", "PATH", NULL};
 	for (i = 0; builtins[i]; i++)
 	{
 		if (_strcmp(command, builtins[i]) == 0)
@@ -32,6 +32,7 @@ int builtin(char *command)
 
 void handle_builtins(char **cmd, char **argv, int *status, int i)
 {
+	char *path_value;
 	(void)i;
 	(void)argv;
 	if (_strcmp("exit", cmd[0]) == 0)
@@ -50,16 +51,16 @@ void handle_builtins(char **cmd, char **argv, int *status, int i)
 	{
 		_echo(cmd);
 	}
+	else if (_strcmp(cmd[0], "$PATH") == 0 || _strcmp(cmd[0], "PATH") == 0)
+	{
+		path_value = get_environ("PATH");
+		if (path_value != NULL)
+		{
+			write(STDOUT_FILENO, path_value, _strlen(path_value));
+			write(STDOUT_FILENO, "\n", 1);
+			free(path_value);
+		}
 }
-char *path_value = get_environ("PATH");
-    if (path_value != NULL)
-    {
-        write(STDOUT_FILENO, path_value, _strlen(path_value));
-        write(STDOUT_FILENO, "\n", 1);
-        freecommand(commands);
-        continue;
-    }
-
 
 /**
  * hsh_exit - terminates the prog with "exit" input.
