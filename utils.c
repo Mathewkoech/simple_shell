@@ -89,7 +89,7 @@ char *_itoa(int i)
 }
 
 /**
- * _echo - Custom echo 
+ * _echo - Custom echo
  * @cmd: Array of command arguments.
  */
 void _echo(char **cmd)
