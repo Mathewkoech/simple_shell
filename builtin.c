@@ -51,7 +51,14 @@ void handle_builtins(char **cmd, char **argv, int *status, int i)
 		_echo(cmd);
 	}
 }
-
+char *path_value = get_environ("PATH");
+    if (path_value != NULL)
+    {
+        write(STDOUT_FILENO, path_value, _strlen(path_value));
+        write(STDOUT_FILENO, "\n", 1);
+        freecommand(commands);
+        continue;
+    }
 
 
 /**
