@@ -1,18 +1,16 @@
 #include "shell.h"
 /**
  * main - entry
- * @envp: param 3. environment
+ * @argv: param 3. environment
  *@arc:count of arguments
  * Return: int 0 on success
  */
-int main(int arc, char **envp)
+int main(int arc, char **argv)
 {
-	pid_t pid;
-	char *line, **commands, **args;
-	int status_ = 0, i = 0, cmd_index = 0;
+	char *line, **commands = NULL;
+	int status_ = 0,  index = 0;
 	(void)arc;
 
-	pid = getpid();
 	while (1)
 	{
 		line = read_line();
@@ -23,26 +21,12 @@ int main(int arc, char **envp)
 			free(line);
 			return (status_);
 		}
-		line = var_replace(line, status_, pid);
+		index++;
 		commands = tokenizer(line);
 		if (!commands)
 			continue;
-		for (cmd_index = 0; commands[cmd_index] != NULL; cmd_index++)
-		{
-			args = tokenizer(commands[cmd_index]);
-			if (!args)
-			continue;
-			if (builtin(args[0]))
-			{
-				handle_builtins(args, envp, &status_, i);
-			}
-			else
-			{
-				status_ = execute_command(args, envp, i);
-					}
-			freecommand(args);
-		}
-		freecommand(commands);
-	}
-	return (0);
+		if (is_builtin(commands[0]))
+                        handle_builtins(commands, argv, &status_, index);
+                else
+                        status_ = execute_command(commands, argv, index); }
 }

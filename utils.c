@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- *print_environ-prints enviroment variables
+*print_environ-prints enviroment variables
  *@command:command arguments for env
  *@status:exit status
  */
@@ -28,12 +28,15 @@ void freecommand(char **command)
 {
 	int i;
 
+	if (!command)
+		return;
+
 	/*Free each  string in the array */
-	for (i = 0; command[i] != NULL; i++)
+	for (i = 0; command[i]; i++)
 	{
-		free(command[i]);
+		free(command[i]), command[i] = NULL;
 	}
-	free(command);
+	free(command), command = NULL;
 }
 
 /**
@@ -74,8 +77,7 @@ char *_itoa(int i)
 		buffer[j++] = '0';
 	else
 	{
-
-		while (i > 0 && j < (size_t)(sizeof(buffer) - 1))
+		while (i > 0)
 		{
 			buffer[j++] = (i % 10) + '0';
 			i /= 10;
@@ -89,21 +91,25 @@ char *_itoa(int i)
 }
 
 /**
- * _echo - Custom echo
- * @cmd: Array of command arguments.
- */
-void _echo(char **cmd)
+* positive - checks if string is positive number
+* @str: string number to be checked
+* Return: 1 if positive else 0
+*/
+int positive(char *str)
 {
-	int i = 1;
+	int i;
 
-	while (cmd[i] != NULL)
+	if (!str)
 	{
-		write(STDOUT_FILENO, cmd[i], _strlen(cmd[i]));
-		if (cmd[i + 1] != NULL)
-		{
-			write(STDOUT_FILENO, " ", 1);
-		}
-		i++;
+		return (0);
 	}
-	write(STDOUT_FILENO, "\n", 1);
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] < '0' || str[i] > '9')
+		{
+			return (0);
+
+		}
+	}
+	return (1);
 }

@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- *builtin - checks if command is shell builtin
+ *is_builtin - checks if command is shell builtin
  *@command: command to be checked
  *Return: 1 if the command is a builtin, 0 otherwise.
  */
-int builtin(char *command)
+int is_builtin(char *command)
 {
 	int i;
 
 	char *builtins[] = {
 			"setenv", "env", "exit",
-			"cd", "echo", "$PATH", "PATH", NULL};
+			"cd", "unsetenv", NULL};
 	for (i = 0; builtins[i]; i++)
 	{
 		if (_strcmp(command, builtins[i]) == 0)
@@ -32,50 +32,22 @@ int builtin(char *command)
 
 void handle_builtins(char **cmd, char **argv, int *status, int i)
 {
-	char *path_value;
 	(void)i;
 	(void)argv;
 	if (_strcmp("exit", cmd[0]) == 0)
 	{
-		hsh_exit(cmd[0]);
+		hsh_exit(cmd, argv, status, i);
 	}
 	else if (_strcmp(cmd[0], "env") == 0)
 	{
 		print_environ(cmd, status);
 	}
-	else if (_strcmp(cmd[0], "cd") == 0)
+	else if (_strcmp(cmd[0], "setenv") == 0)
 	{
-		_cd(cmd);
+		_setenv(cmd);
 	}
-	else if (_strcmp(cmd[0], "echo") == 0)
+	else if (_strcmp(cmd[0], "unsetenv") == 0)
 	{
-		_echo(cmd);
+		_unsetenv(cmd);
 	}
-	else if (_strcmp(cmd[0], "$PATH") == 0 || _strcmp(cmd[0], "PATH") == 0)
-	{
-		path_value = get_environ("PATH");
-		if (path_value != NULL)
-		{
-			write(STDOUT_FILENO, path_value, _strlen(path_value));
-			write(STDOUT_FILENO, "\n", 1);
-			free(path_value);
-		}
-	}
-}
-
-/**
- * hsh_exit - terminates the prog with "exit" input.
- * @s: param. the string to be read.
- * Return: nothing.
- */
-
-int hsh_exit(char *s)
-{
-	if (_strcmp("exit", s) == 0)
-	{
-		free(s);
-		exit(EXIT_SUCCESS);
-	}
-
-	return (-1);
 }

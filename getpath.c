@@ -1,65 +1,45 @@
 #include "shell.h"
 /**
- * check_path - Checks if the command is an absolute path.
+ * get_path - Check the full path of a command.
  * @command: The command to check.
  *
- * Return: string representing the full path,
- *         or NULL on error
- */
-char *check_path(char *command)/*checks if it is absolute path*/
-{
-	struct stat file_info;
-
-	if (command[0] == '/')
-	{
-		if (stat(command, &file_info) == 0)
-		{
-			return (_strdup(command));
-		}
-	}
-	return (NULL);
-}
-
-/**
- * get_path - Searches for the command in the directories specified by PATH.
- * @command: The command to search for.
- *
- * Return: string representing the full path,
- *         or NULL or on error.
+ * Return: string representing the full path
  */
 char *get_path(char *command)
 {
-	char *path_env, *full_path, *dir;
+	char *path_env, *full_cmd, *dir;
+	int i;
+	struct stat st;
 
-	if (check_path(command))
+	for (i = 0; command[i]; i++)
 	{
-		return (_strdup(command));
+		if (command[i] == '/')
+		{
+			if (stat(command, &st) == 0)
+				return (_strdup(command));
+			return (NULL);
+		}
 	}
-
 	path_env = get_environ("PATH");
 	if (!path_env)
-	{
 		return (NULL);
-	}
-
 	for (dir = strtok(path_env, ":"); dir; dir = strtok(NULL, ":"))
 	{
-		full_path = malloc(_strlen(dir) + _strlen(command) + 2);
-		if (!full_path)
+		full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
+		if (!full_cmd)
 		{
 			free(path_env);
 			return (NULL);
 		}
-		_strcpy(full_path, dir);
-		_strcat(full_path, "/");
-		_strcat(full_path, command);
-
-		if (access(full_path, F_OK | X_OK) == 0)
+		_strcpy(full_cmd, dir);
+		_strcat(full_cmd, "/");
+		_strcat(full_cmd, command);
+		if (stat(full_cmd, &st) == 0)
 		{
 			free(path_env);
-			return (full_path);
+			return (full_cmd);
 		}
-		free(full_path);
+		free(full_cmd);
 	}
 	free(path_env);
 	return (NULL);

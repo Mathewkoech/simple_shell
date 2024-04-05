@@ -7,15 +7,15 @@
 
 void string_reverse(char *str, int lenght)
 {
-	char temp;
+	char ptr;
 	int first = 0;
 	int last = lenght - 1;
 
 	while (first < last)
 	{
-		temp = str[first];
+		ptr = str[first];
 		str[first] = str[last];
-		str[last] = temp;
+		str[last] = ptr;
 		first++;
 		last--;
 	}

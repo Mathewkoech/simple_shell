@@ -9,16 +9,16 @@
 
 char *_strcpy(char *dest, const char *src)
 {
-	int i, len;
+	int i = 0;
 
-	for (len = 0; src[len] != '\0'; ++len)
-	{
-		;
-	}
+	if (dest == NULL || src == NULL)
+		return (dest);
 
-	for (i = 0; i < len; i++)
+	while (src[i])
 	{
 		dest[i] = src[i];
+		i++;
+
 	}
 	dest[i] = '\0';
 	return (dest);
